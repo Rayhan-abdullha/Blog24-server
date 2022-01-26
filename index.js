@@ -16,8 +16,13 @@ app.use("/images", express.static(path.join(__dirname,"/images")))
 
 dotenv.config()
 
-mongoose.connect(process.env.MONGO_URL).then(console.log("Connected to Mongodb"))
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2nody.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`).then(console.log("Connected to Mongodb"))
 .catch(err => console.log(err))
+
+// test
+app.get("/", (req, res) => {
+    console.log("Hello world");
+})
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -32,6 +37,7 @@ const upload = multer({storage: storage})
 app.post("/api/upload", upload.single("file"), (req,res) => {
     res.status(200).json("file has been uploded")
 })
+
 
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
