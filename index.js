@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require('cors')
+const bodyParser = require('body-parser')
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -12,9 +14,14 @@ const path = require("path")
 const port = process.env.PORT || 5000;
 
 app.use(express.json())
-app.use("/images", express.static(path.join(__dirname,"/images")))
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cors())
 
 dotenv.config()
+
+app.use("/images", express.static(path.join(__dirname,"/images")))
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2nody.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`).then(console.log("Connected to Mongodb"))
 .catch(err => console.log(err))
