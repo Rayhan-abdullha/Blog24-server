@@ -49,5 +49,5 @@ app.use("/api/posts", postsRoute)
 app.use("/api/categories", categoryRoute)
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`http://localhost:${port}`)
 });
