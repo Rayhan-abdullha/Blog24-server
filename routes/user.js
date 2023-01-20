@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User")
 const Post = require("../models/Post")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 
 // upadate
 router.put("/:id", async(req, res) => {
