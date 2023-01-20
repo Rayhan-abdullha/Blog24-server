@@ -22,7 +22,7 @@ app.use(cors())
 dotenv.config()
 app.use("/images", express.static(path.join(__dirname,"/images")))
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2nody.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`).then(console.log("Connected to Mongodb"))
+mongoose.connect(`mongodb+srv://mydbUser:00114477@cluster0.2nody.mongodb.net/blogDbUser?retryWrites=true&w=majority`).then(console.log("Connected to Mongodb"))
 .catch(err => console.log(err))
 
 const storage = multer.diskStorage({
